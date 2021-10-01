@@ -7,8 +7,8 @@ import time
 
 
 def main():
-    path = '../'
-    files = glob.glob(path + '**/*.JPG') ##recursively find all JPG
+    start_path = '../'
+    files = glob.glob(start_path + '**/*.JPG') ##recursively find all JPG
 
     print("searching for JPGs")
     for f in files:
@@ -43,6 +43,16 @@ def main():
             cmd = "mkdir -p " + path_new
             output = subprocess.check_output(cmd , shell=True, stderr=subprocess.STDOUT, timeout=300)  
             create_resize(f , 6666, f_new)
+
+        #create thumbnails
+        thumbfile = start_path + "/thumbs/thumb_" + os.path.splitext(fn)[0]+".gif"
+        cmd = "mkdir -p " + start_path + "/thumbs"
+        output = subprocess.check_output(cmd , shell=True, stderr=subprocess.STDOUT, timeout=300)  
+        if not os.path.isfile(thumbfile):
+            cmd = "convert -auto-orient -define jpeg:size=256x256 "+ f +" -thumbnail 128x128^ -gravity center -extent 128x128 " + thumbfile
+            print(cmd)
+            output = subprocess.check_output(cmd , shell=True, stderr=subprocess.STDOUT, timeout=300)
+
 
 
 def create_resize(f, reso, f_new):

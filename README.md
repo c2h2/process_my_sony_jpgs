@@ -4,7 +4,8 @@ Sony cameras are dumb, they produce around 30MB per shot or even larger, some bu
 
 ## current operations
 * rename: rename file from `XXX` to `YYYY-MM-DD_XXX`
-* resize: create a `6666` resolution file.
+* resize: create a `6666` resolution file. (for soical media)
+* square thumbnail: create 128x128 thumbnail in `thumbs` folder.
  
 ## how to run (Only MAC or Linux)
 you need to have swiss-army-knife image tool imageMagick, `brew install imagemagick` or `apt install iamgemagick`
